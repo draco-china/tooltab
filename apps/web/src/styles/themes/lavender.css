@@ -1,0 +1,19 @@
+@layer base {
+  :root[data-palette="lavender"] {
+    --accent: oklch(0.63 0.2 294);
+    --accent-foreground: oklch(0.16 0.01 294);
+    --accent-soft: oklch(0.93 0.045 294);
+    --accent-soft-foreground: oklch(0.41 0.15 294);
+    --focus: oklch(0.5 0.2 294);
+    --link: var(--focus);
+  }
+
+  .dark[data-palette="lavender"],
+  [data-theme="dark"][data-palette="lavender"] {
+    --accent: oklch(0.75 0.15 294);
+    --accent-soft: oklch(0.31 0.075 294);
+    --accent-soft-foreground: oklch(0.88 0.06 294);
+    --focus: var(--accent);
+    --link: var(--accent);
+  }
+}

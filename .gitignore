@@ -1,0 +1,17 @@
+node_modules/
+.output/
+.output-coverage/
+.nitro/
+.tanstack/
+dist/
+coverage/
+**/src/paraglide/
+**/project.inlang/cache/
+.env*
+!.env.example
+.DS_Store
+
+*.tsbuildinfo
+
+.wrangler/
+.dev.vars*

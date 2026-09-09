@@ -1,0 +1,248 @@
+{
+  "unicodeVersion": "17.0.0",
+  "source": "https://www.unicode.org/Public/17.0.0/ucd/UnicodeData.txt",
+  "sourceSha256": "2e1efc1dcb59c575eedf5ccae60f95229f706ee6d031835247d843c11d96470c",
+  "scope": "40-code-point InBrowserApp c1a30774a8fd459377deb1b466d689ffeb8a8ba5 detection set, not all Unicode invisible characters",
+  "entries": [
+    {
+      "code": 8203,
+      "name": "ZERO WIDTH SPACE",
+      "short": "ZWSP",
+      "category": "zero-width"
+    },
+    {
+      "code": 8204,
+      "name": "ZERO WIDTH NON-JOINER",
+      "short": "ZWNJ",
+      "category": "zero-width"
+    },
+    {
+      "code": 8205,
+      "name": "ZERO WIDTH JOINER",
+      "short": "ZWJ",
+      "category": "zero-width"
+    },
+    {
+      "code": 8288,
+      "name": "WORD JOINER",
+      "short": "WJ",
+      "category": "zero-width"
+    },
+    {
+      "code": 65279,
+      "name": "ZERO WIDTH NO-BREAK SPACE",
+      "short": "BOM",
+      "category": "zero-width"
+    },
+    {
+      "code": 847,
+      "name": "COMBINING GRAPHEME JOINER",
+      "short": "CGJ",
+      "category": "zero-width"
+    },
+    {
+      "code": 6158,
+      "name": "MONGOLIAN VOWEL SEPARATOR",
+      "short": "MVS",
+      "category": "zero-width"
+    },
+    {
+      "code": 8206,
+      "name": "LEFT-TO-RIGHT MARK",
+      "short": "LRM",
+      "category": "bidi-control"
+    },
+    {
+      "code": 8207,
+      "name": "RIGHT-TO-LEFT MARK",
+      "short": "RLM",
+      "category": "bidi-control"
+    },
+    {
+      "code": 8234,
+      "name": "LEFT-TO-RIGHT EMBEDDING",
+      "short": "LRE",
+      "category": "bidi-control"
+    },
+    {
+      "code": 8235,
+      "name": "RIGHT-TO-LEFT EMBEDDING",
+      "short": "RLE",
+      "category": "bidi-control"
+    },
+    {
+      "code": 8236,
+      "name": "POP DIRECTIONAL FORMATTING",
+      "short": "PDF",
+      "category": "bidi-control"
+    },
+    {
+      "code": 8237,
+      "name": "LEFT-TO-RIGHT OVERRIDE",
+      "short": "LRO",
+      "category": "bidi-control"
+    },
+    {
+      "code": 8238,
+      "name": "RIGHT-TO-LEFT OVERRIDE",
+      "short": "RLO",
+      "category": "bidi-control"
+    },
+    {
+      "code": 8294,
+      "name": "LEFT-TO-RIGHT ISOLATE",
+      "short": "LRI",
+      "category": "bidi-control"
+    },
+    {
+      "code": 8295,
+      "name": "RIGHT-TO-LEFT ISOLATE",
+      "short": "RLI",
+      "category": "bidi-control"
+    },
+    {
+      "code": 8296,
+      "name": "FIRST STRONG ISOLATE",
+      "short": "FSI",
+      "category": "bidi-control"
+    },
+    {
+      "code": 8297,
+      "name": "POP DIRECTIONAL ISOLATE",
+      "short": "PDI",
+      "category": "bidi-control"
+    },
+    {
+      "code": 1564,
+      "name": "ARABIC LETTER MARK",
+      "short": "ALM",
+      "category": "bidi-control"
+    },
+    {
+      "code": 160,
+      "name": "NO-BREAK SPACE",
+      "short": "NBSP",
+      "category": "space-like"
+    },
+    {
+      "code": 5760,
+      "name": "OGHAM SPACE MARK",
+      "short": "OGSP",
+      "category": "space-like"
+    },
+    {
+      "code": 8192,
+      "name": "EN QUAD",
+      "short": "ENQ",
+      "category": "space-like"
+    },
+    {
+      "code": 8193,
+      "name": "EM QUAD",
+      "short": "EMQ",
+      "category": "space-like"
+    },
+    {
+      "code": 8194,
+      "name": "EN SPACE",
+      "short": "ENS",
+      "category": "space-like"
+    },
+    {
+      "code": 8195,
+      "name": "EM SPACE",
+      "short": "EMS",
+      "category": "space-like"
+    },
+    {
+      "code": 8196,
+      "name": "THREE-PER-EM SPACE",
+      "short": "3PEM",
+      "category": "space-like"
+    },
+    {
+      "code": 8197,
+      "name": "FOUR-PER-EM SPACE",
+      "short": "4PEM",
+      "category": "space-like"
+    },
+    {
+      "code": 8198,
+      "name": "SIX-PER-EM SPACE",
+      "short": "6PEM",
+      "category": "space-like"
+    },
+    {
+      "code": 8199,
+      "name": "FIGURE SPACE",
+      "short": "FIGSP",
+      "category": "space-like"
+    },
+    {
+      "code": 8200,
+      "name": "PUNCTUATION SPACE",
+      "short": "PUNCSP",
+      "category": "space-like"
+    },
+    {
+      "code": 8201,
+      "name": "THIN SPACE",
+      "short": "THINSP",
+      "category": "space-like"
+    },
+    {
+      "code": 8202,
+      "name": "HAIR SPACE",
+      "short": "HAIRSP",
+      "category": "space-like"
+    },
+    {
+      "code": 8239,
+      "name": "NARROW NO-BREAK SPACE",
+      "short": "NNBSP",
+      "category": "space-like"
+    },
+    {
+      "code": 8287,
+      "name": "MEDIUM MATHEMATICAL SPACE",
+      "short": "MMSP",
+      "category": "space-like"
+    },
+    {
+      "code": 12288,
+      "name": "IDEOGRAPHIC SPACE",
+      "short": "IDSP",
+      "category": "space-like"
+    },
+    {
+      "code": 173,
+      "name": "SOFT HYPHEN",
+      "short": "SHY",
+      "category": "format"
+    },
+    {
+      "code": 8289,
+      "name": "FUNCTION APPLICATION",
+      "short": "FAP",
+      "category": "format"
+    },
+    {
+      "code": 8290,
+      "name": "INVISIBLE TIMES",
+      "short": "IT",
+      "category": "format"
+    },
+    {
+      "code": 8291,
+      "name": "INVISIBLE SEPARATOR",
+      "short": "IS",
+      "category": "format"
+    },
+    {
+      "code": 8292,
+      "name": "INVISIBLE PLUS",
+      "short": "IP",
+      "category": "format"
+    }
+  ]
+}

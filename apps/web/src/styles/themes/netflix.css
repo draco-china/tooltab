@@ -1,0 +1,18 @@
+@layer base {
+  :root[data-palette="netflix"] {
+    --accent: oklch(0.57 0.235 25);
+    --accent-foreground: oklch(0.99 0.005 270);
+    --accent-soft: oklch(0.93 0.045 25);
+    --accent-soft-foreground: oklch(0.42 0.18 25);
+    --focus: var(--accent);
+    --link: var(--accent);
+  }
+
+  .dark[data-palette="netflix"],
+  [data-theme="dark"][data-palette="netflix"] {
+    --accent: oklch(0.68 0.22 25);
+    --accent-foreground: oklch(0.16 0.035 25);
+    --accent-soft: oklch(0.3 0.08 25);
+    --accent-soft-foreground: oklch(0.89 0.065 25);
+  }
+}

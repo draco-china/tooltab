@@ -1,0 +1,18 @@
+@layer base {
+  :root[data-palette="uber"] {
+    --accent: oklch(0.2 0 0);
+    --accent-foreground: oklch(0.99 0.005 270);
+    --accent-soft: oklch(0.92 0 0);
+    --accent-soft-foreground: oklch(0.2 0 0);
+    --focus: var(--accent);
+    --link: var(--accent);
+  }
+
+  .dark[data-palette="uber"],
+  [data-theme="dark"][data-palette="uber"] {
+    --accent: oklch(0.95 0 0);
+    --accent-foreground: oklch(0.16 0 0);
+    --accent-soft: oklch(0.3 0 0);
+    --accent-soft-foreground: oklch(0.95 0 0);
+  }
+}

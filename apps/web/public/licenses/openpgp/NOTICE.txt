@@ -1,0 +1,16 @@
+OpenPGP.js 6.3.1
+Copyright OpenPGP.js contributors. Licensed under LGPL-3.0-or-later.
+Original license: LICENSE in this directory.
+Source repository and exact version:
+https://github.com/openpgpjs/openpgpjs/tree/v6.3.1
+https://github.com/openpgpjs/openpgpjs/archive/refs/tags/v6.3.1.tar.gz
+Published package:
+https://registry.npmjs.org/openpgp/-/openpgp-6.3.1.tgz
+
+ToolTab uses the unmodified npm browser ES module, bundled into the dedicated
+PGP Worker by Vite. Source and build instructions are available in the
+upstream README/package.json. To reproduce or replace the library: obtain
+source v6.3.1, install its locked development dependencies with npm ci, run
+npm run build, and use the resulting dist browser ES module. In ToolTab,
+replace the openpgp dependency and rebuild the Vite application and worker.
+No OpenPGP.js source modifications are made by ToolTab.

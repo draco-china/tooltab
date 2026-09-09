@@ -1,0 +1,78 @@
+{
+  "crc8": {
+    "empty": "00",
+    "high": "29"
+  },
+  "crc8-1-wire": {
+    "empty": "00",
+    "high": "5d"
+  },
+  "crc8-dvb-s2": {
+    "empty": "00",
+    "high": "b3"
+  },
+  "crc16": {
+    "empty": "0000",
+    "high": "ba71"
+  },
+  "crc16-ccitt": {
+    "empty": "ffff",
+    "high": "c436"
+  },
+  "crc16-modbus": {
+    "empty": "ffff",
+    "high": "ba55"
+  },
+  "crc16-kermit": {
+    "empty": "0000",
+    "high": "dd2f"
+  },
+  "crc16-xmodem": {
+    "empty": "0000",
+    "high": "d53a"
+  },
+  "crc24": {
+    "empty": "b704ce",
+    "high": "a90887"
+  },
+  "crc32": {
+    "empty": "00000000",
+    "high": "70601c92"
+  },
+  "crc32-mpeg-2": {
+    "empty": "ffffffff",
+    "high": "cf067cdd"
+  },
+  "crcjam": {
+    "empty": "ffffffff",
+    "high": "8f9fe36d"
+  },
+  "crc64-ecma-182": {
+    "empty": "0000000000000000",
+    "high": "09254937d64c9081"
+  },
+  "crc64-go-iso": {
+    "empty": "0000000000000000",
+    "high": "276e4f6fb7900000"
+  },
+  "crc64-ms": {
+    "empty": "ffffffffffffffff",
+    "high": "2134fac7169ccea1"
+  },
+  "crc64-nvme": {
+    "empty": "0000000000000000",
+    "high": "b0f6daa1427eddea"
+  },
+  "crc64-redis": {
+    "empty": "0000000000000000",
+    "high": "5bd37f9b37cee91f"
+  },
+  "crc64-we": {
+    "empty": "0000000000000000",
+    "high": "a5228b402d07b752"
+  },
+  "crc64-xz": {
+    "empty": "0000000000000000",
+    "high": "a667c1887ea735c0"
+  }
+}

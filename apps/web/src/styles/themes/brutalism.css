@@ -1,0 +1,19 @@
+@layer base {
+  :root[data-palette="brutalism"] {
+    --accent: oklch(0.87 0.2 97);
+    --accent-foreground: oklch(0.16 0 0);
+    --accent-soft: oklch(0.94 0.12 97);
+    --accent-soft-foreground: oklch(0.22 0 0);
+    --focus: oklch(0.55 0.18 97);
+    --link: oklch(0.42 0.12 97);
+  }
+
+  .dark[data-palette="brutalism"],
+  [data-theme="dark"][data-palette="brutalism"] {
+    --accent: oklch(0.87 0.2 97);
+    --accent-foreground: oklch(0.16 0 0);
+    --accent-soft: oklch(0.32 0.08 97);
+    --accent-soft-foreground: oklch(0.94 0.12 97);
+    --link: var(--accent);
+  }
+}

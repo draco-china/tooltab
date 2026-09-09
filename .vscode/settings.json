@@ -1,0 +1,10 @@
+{
+  "commentTranslate.source": "Bing",
+  "tailwindCSS.experimental.configFile": {
+    "apps/web/src/styles/index.css": "apps/web/src/**"
+  },
+  "tailwindCSS.lint.suggestCanonicalClasses": "warning",
+  "[javascript][javascriptreact][typescript][typescriptreact][json][jsonc][css]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
+}

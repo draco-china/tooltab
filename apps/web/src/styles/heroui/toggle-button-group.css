@@ -1,0 +1,54 @@
+@layer components {
+  .toggle-button-group {
+    justify-content: flex-start;
+  }
+
+  :where(.toggle-button-group--full-width, .toggle-button-group.w-full):not(
+      .toggle-button-group--detached
+    )
+    > .toggle-button {
+    min-width: 0;
+    width: 100%;
+    flex: 1 1 0%;
+  }
+
+  .toggle-button-group.grid.grid-cols-2:not(.toggle-button-group--detached):has(
+      > .toggle-button:nth-child(3)
+    )
+    > .toggle-button {
+    border-radius: 0;
+  }
+
+  .toggle-button-group.grid.grid-cols-2:not(.toggle-button-group--detached):has(
+      > .toggle-button:nth-child(3)
+    )
+    > .toggle-button:first-child {
+    border-start-start-radius: calc(var(--radius) * 3);
+  }
+
+  .toggle-button-group.grid.grid-cols-2:not(.toggle-button-group--detached):has(
+      > .toggle-button:nth-child(3)
+    )
+    > .toggle-button:nth-child(2) {
+    border-start-end-radius: calc(var(--radius) * 3);
+  }
+
+  .toggle-button-group.grid.grid-cols-2:not(.toggle-button-group--detached):has(
+      > .toggle-button:nth-child(3)
+    )
+    > .toggle-button:nth-last-child(2) {
+    border-end-start-radius: calc(var(--radius) * 3);
+  }
+
+  .toggle-button-group.grid.grid-cols-2:not(.toggle-button-group--detached):has(
+      > .toggle-button:nth-child(3)
+    )
+    > .toggle-button:last-child {
+    border-end-end-radius: calc(var(--radius) * 3);
+  }
+
+  .toggle-button-group--detached {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}

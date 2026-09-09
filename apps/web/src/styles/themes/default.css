@@ -1,0 +1,18 @@
+@layer base {
+  :root[data-palette="default"] {
+    --accent: oklch(0.52197 0.17709 255.83);
+    --accent-foreground: oklch(0.99 0.005 270);
+    --accent-soft: oklch(0.93 0.045 254);
+    --accent-soft-foreground: oklch(0.4 0.15 254);
+    --focus: var(--accent);
+    --link: var(--accent);
+  }
+
+  .dark[data-palette="default"],
+  [data-theme="dark"][data-palette="default"] {
+    --accent: oklch(0.66903 0.18078 251.84);
+    --accent-foreground: oklch(0.16 0.035 270);
+    --accent-soft: oklch(0.3 0.075 251);
+    --accent-soft-foreground: oklch(0.88 0.065 251);
+  }
+}

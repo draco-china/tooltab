@@ -1,0 +1,18 @@
+@layer base {
+  :root[data-palette="coinbase"] {
+    --accent: oklch(0.55 0.255 264);
+    --accent-foreground: oklch(0.99 0.005 270);
+    --accent-soft: oklch(0.92 0.05 264);
+    --accent-soft-foreground: oklch(0.38 0.2 264);
+    --focus: var(--accent);
+    --link: var(--accent);
+  }
+
+  .dark[data-palette="coinbase"],
+  [data-theme="dark"][data-palette="coinbase"] {
+    --accent: oklch(0.71 0.2 264);
+    --accent-foreground: oklch(0.16 0.035 264);
+    --accent-soft: oklch(0.3 0.09 264);
+    --accent-soft-foreground: oklch(0.89 0.07 264);
+  }
+}

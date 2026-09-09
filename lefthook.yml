@@ -1,0 +1,14 @@
+pre-commit:
+  jobs:
+    - name: check
+      run: bun run check
+
+commit-msg:
+  jobs:
+    - name: conventional-commit
+      run: bun run commitlint --edit "{1}"
+
+pre-push:
+  jobs:
+    - name: validate
+      run: bun run validate

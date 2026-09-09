@@ -1,0 +1,5 @@
+@layer components {
+  .input {
+    min-height: 2.75rem;
+  }
+}

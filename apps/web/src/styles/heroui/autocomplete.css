@@ -1,0 +1,24 @@
+@layer components {
+  .autocomplete {
+    gap: 0.5rem;
+  }
+
+  .autocomplete__trigger {
+    min-height: 2.75rem;
+    align-items: center;
+  }
+
+  .autocomplete__value {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    line-height: 1.25rem;
+  }
+
+  .autocomplete__trigger > button {
+    display: inline-flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+  }
+}

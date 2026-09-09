@@ -1,0 +1,19 @@
+@layer base {
+  :root[data-palette="spotify"] {
+    --accent: oklch(0.68 0.18 145);
+    --accent-foreground: oklch(0.16 0.01 145);
+    --accent-soft: oklch(0.93 0.05 145);
+    --accent-soft-foreground: oklch(0.37 0.13 145);
+    --focus: oklch(0.5 0.18 145);
+    --link: var(--focus);
+  }
+
+  .dark[data-palette="spotify"],
+  [data-theme="dark"][data-palette="spotify"] {
+    --accent: oklch(0.75 0.17 145);
+    --accent-soft: oklch(0.3 0.07 145);
+    --accent-soft-foreground: oklch(0.89 0.065 145);
+    --focus: var(--accent);
+    --link: var(--accent);
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tooltab",
+  "main": "apps/web/.output/server/index.mjs",
+  "compatibility_date": "2026-09-09",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "apps/web/.output/public",
+    "binding": "ASSETS"
+  },
+  "no_bundle": true,
+  "rules": [
+    {
+      "type": "ESModule",
+      "globs": ["**/*.mjs", "**/*.js"]
+    }
+  ]
+}

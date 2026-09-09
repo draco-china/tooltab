@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ToolTab</title>
+  <desc id="desc">An open browser tab frame surrounding a geometric T.</desc>
+  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="36" d="M288 96H160c-35.346 0-64 28.654-64 64v192c0 35.346 28.654 64 64 64h192c35.346 0 64-28.654 64-64V224"/>
+    <path stroke-width="36" opacity=".38" d="M344 96h8c35.346 0 64 28.654 64 64v8"/>
+    <path stroke-width="44" d="M164 184h184M256 184v168"/>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+@layer components {
+  .select {
+    gap: 0.5rem;
+  }
+
+  .select__trigger {
+    min-height: 2.75rem;
+    align-items: center;
+  }
+
+  .select__value {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    line-height: 1.25rem;
+  }
+}

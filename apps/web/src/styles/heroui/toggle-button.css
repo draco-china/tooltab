@@ -1,0 +1,9 @@
+@layer components {
+  .toggle-button {
+    min-height: 2.75rem;
+  }
+
+  .toggle-button--icon-only {
+    min-width: 2.75rem;
+  }
+}

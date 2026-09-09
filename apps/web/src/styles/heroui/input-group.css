@@ -1,0 +1,21 @@
+@layer components {
+  .input-group {
+    min-height: 2.75rem;
+  }
+
+  .input-group__prefix {
+    border-inline-end: 0;
+    flex-shrink: 0;
+  }
+
+  .input-group__suffix {
+    border-inline-start: 0;
+    flex-shrink: 0;
+  }
+
+  .input-group__prefix .button,
+  .input-group__suffix .button {
+    height: 2.625rem;
+    min-height: 2.625rem;
+  }
+}
