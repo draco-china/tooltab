@@ -106,6 +106,8 @@ function SiteLayout() {
   }
 
   const toolsActive = location.pathname.includes("/tools");
+  const apiActive = location.pathname.endsWith("/api");
+  const mcpActive = location.pathname.endsWith("/mcp");
 
   return (
     <div className="page-container flex min-h-svh flex-col gap-8 py-4 sm:gap-10 sm:py-6">
@@ -131,6 +133,24 @@ function SiteLayout() {
               }`}
             >
               {m["navigation.tools"]()}
+            </Link>
+            <Link
+              to={localePath(locale, "/api")}
+              aria-current={apiActive ? "page" : undefined}
+              className={`hidden min-h-11 min-w-11 items-center justify-center text-sm transition-colors hover:text-foreground sm:inline-flex ${
+                apiActive ? "font-medium text-foreground" : "text-muted"
+              }`}
+            >
+              {m["navigation.apinav"]()}
+            </Link>
+            <Link
+              to={localePath(locale, "/mcp")}
+              aria-current={mcpActive ? "page" : undefined}
+              className={`hidden min-h-11 min-w-11 items-center justify-center text-sm transition-colors hover:text-foreground sm:inline-flex ${
+                mcpActive ? "font-medium text-foreground" : "text-muted"
+              }`}
+            >
+              {m["navigation.mcpnav"]()}
             </Link>
           </div>
           <div className="flex items-center gap-1">
@@ -303,6 +323,18 @@ function SiteLayout() {
           >
             GitHub
           </a>
+          <Link
+            className="transition-colors hover:text-foreground"
+            to={localePath(locale, "/api")}
+          >
+            {m["navigation.apinav"]()}
+          </Link>
+          <Link
+            className="transition-colors hover:text-foreground"
+            to={localePath(locale, "/mcp")}
+          >
+            {m["navigation.mcpnav"]()}
+          </Link>
           <Link
             className="transition-colors hover:text-foreground"
             to={localePath(locale, "/privacy")}

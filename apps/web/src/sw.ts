@@ -22,6 +22,8 @@ const pages = new Set(
     [
       "",
       "/tools",
+      "/api",
+      "/mcp",
       "/privacy",
       "/terms",
       ...toolIds.map((id) => `/tools/${id}`),
@@ -30,6 +32,10 @@ const pages = new Set(
     ),
   ),
 );
+const apiPages = new Set(
+  locales.map((locale) => (locale === baseLocale ? "/api" : `/${locale}/api`)),
+);
+const publicDocuments = new Set(["/api/v1/openapi.yaml"]);
 const shellImportGraph = "/app-shell-imports.json";
 function isContentPage(path: string) {
   return pages.has(path === "/" ? path : path.replace(/\/$/, ""));
@@ -137,6 +143,8 @@ self.addEventListener("message", (event: ExtendableMessageEvent) => {
       typeof path === "string" && paths.has(path),
   );
   if (typeof page === "string" && isContentPage(page)) safePaths.push(page);
+  if (typeof page === "string" && apiPages.has(page))
+    safePaths.push(...publicDocuments);
   // Only known app resources and fixed content routes; no query, hash or user data.
   event.waitUntil(
     Promise.allSettled([
@@ -150,7 +158,9 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (request.method !== "GET" || url.origin !== self.location.origin) return;
   const isPage = isContentPage(url.pathname);
-  if (!isPage && (!paths.has(url.pathname) || url.search)) return;
+  const isPublicDocument = publicDocuments.has(url.pathname);
+  if (!isPage && !isPublicDocument && (!paths.has(url.pathname) || url.search))
+    return;
   event.respondWith(
     (async () => {
       let cached: Response | undefined;

@@ -1,12 +1,14 @@
 import { createHash } from "node:crypto";
 import { readdirSync, readFileSync } from "node:fs";
+import { mkdir } from "node:fs/promises";
+import { builtinModules } from "node:module";
 import { fileURLToPath } from "node:url";
 import { paraglideVitePlugin } from "@inlang/paraglide-js";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import { nitro } from "nitro/vite";
-import type { PluginContext } from "rolldown";
+import { build as rolldownBuild, type PluginContext } from "rolldown";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import {
@@ -22,11 +24,6 @@ import toolIds from "./src/features/tools/catalog/ids.json" with {
 import { captureProductionManifest } from "./scripts/build/build-manifest.ts";
 import { coverageInstrumentation } from "./scripts/build/instrument.ts";
 
-const deploymentPreset =
-  process.env.NITRO_PRESET || process.env.SERVER_PRESET || "bun";
-const cloudflareBuild = ["cloudflare-module", "cloudflare_module"].includes(
-  deploymentPreset,
-);
 const coverageEnabled = process.env.TOOLTAB_COVERAGE === "1";
 const outputRoot = coverageEnabled ? ".output-coverage" : ".output";
 const coveragePlugin = () =>
@@ -73,6 +70,8 @@ const prerenderPages = settings.locales.flatMap((locale) =>
   [
     "",
     "/tools",
+    "/api",
+    "/mcp",
     "/privacy",
     "/terms",
     ...toolIds.map((id) => `/tools/${id}`),
@@ -81,6 +80,178 @@ const prerenderPages = settings.locales.flatMap((locale) =>
   })),
 );
 const prerenderPathnames = new Set(prerenderPages.map(({ path }) => path));
+
+const serverWorkerNames = [
+  "archive-viewer-worker",
+  "barcode-worker",
+  "cidr-tools-worker",
+  "curl-worker",
+  "data-uri-worker",
+  "docker-parser-worker",
+  "gif-animation-worker",
+  "image-formats-worker",
+  "image-optimizers-worker",
+  "list-slug-worker",
+  "pdf-finishing-worker",
+  "pdf-reading-worker",
+  "project-config-worker",
+] as const;
+
+function serverWorkerEntries() {
+  let built = false;
+  return {
+    name: "tooltab-server-worker-entries",
+    apply: "build" as const,
+    async closeBundle() {
+      if (built) return;
+      built = true;
+      const outdir = `${outputRoot}/server/workers`;
+      await mkdir(outdir, { recursive: true });
+      await rolldownBuild({
+        plugins: [
+          coverageInstrumentation({
+            enabled: coverageEnabled,
+          }),
+          {
+            name: "openapi-service-ts5-ast",
+            resolveId(source, importer) {
+              if (
+                source === "typescript" &&
+                importer?.includes("/node_modules/openapi-typescript/")
+              ) {
+                return fileURLToPath(
+                  new URL(
+                    "./node_modules/typescript-legacy/lib/typescript.js",
+                    import.meta.url,
+                  ),
+                );
+              }
+            },
+          },
+          {
+            name: "curl-service-wasm-parser",
+            resolveId(source, importer) {
+              if (
+                source === "curlconverter/dist/src/shell/Parser.js" ||
+                (source === "./Parser.js" &&
+                  importer?.endsWith(
+                    "/curlconverter/dist/src/shell/tokenizer.js",
+                  ))
+              ) {
+                return fileURLToPath(
+                  new URL(
+                    "./src/features/api/runtime/curl-wasm-parser.ts",
+                    import.meta.url,
+                  ),
+                );
+              }
+            },
+          },
+        ],
+        input: Object.fromEntries([
+          ...serverWorkerNames.map((name) => [
+            name,
+            `src/features/api/runtime/${name}.ts`,
+          ]),
+          [
+            "base-encoding-worker",
+            "src/features/tools/base-encoding/worker.ts",
+          ],
+          [
+            "certificate-tools-worker",
+            "src/features/tools/certificate-tools/worker.ts",
+          ],
+          [
+            "code-screenshot-server-worker",
+            "src/features/tools/code-screenshot-generator/server-worker.ts",
+          ],
+          [
+            "gradient-raster-worker",
+            "src/features/tools/css-generators/raster-worker.ts",
+          ],
+          ["csv-json-worker", "src/features/tools/csv-json/worker.ts"],
+          [
+            "ical-event-generator-worker",
+            "src/features/tools/ical-event-generator/worker.ts",
+          ],
+          ["jose-tools-worker", "src/features/tools/jose-tools/worker.ts"],
+          ["kdf-tools-worker", "src/features/tools/kdf-tools/worker.ts"],
+          [
+            "password-tools-worker",
+            "src/features/tools/password-tools/worker.ts",
+          ],
+          ["pdf-editing-worker", "src/features/tools/pdf-editing/worker.ts"],
+          [
+            "pgp-key-generator-worker",
+            "src/features/tools/pgp-key-generator/worker.ts",
+          ],
+          ["qr-tools-worker", "src/features/tools/qr-tools/worker.ts"],
+          [
+            "seo-generators-worker",
+            "src/features/tools/seo-generators/worker.ts",
+          ],
+          ["ssh-tools-worker", "src/features/tools/ssh-tools/worker.ts"],
+          [
+            "text-analysis-worker",
+            "src/features/tools/text-analysis/worker.ts",
+          ],
+          [
+            "text-utilities-worker",
+            "src/features/tools/text-utilities/worker.ts",
+          ],
+          ["crc-checksum-worker", "src/features/tools/crc-checksum/worker.ts"],
+          [
+            "legacy-hashes-worker",
+            "src/features/tools/legacy-hashes/worker.ts",
+          ],
+          [
+            "structured-formats-worker",
+            "src/features/tools/structured-formats/worker.ts",
+          ],
+          ["xml-json-worker", "src/features/tools/xml-json/worker.ts"],
+          ["json-query-worker", "src/features/tools/json-query/worker.ts"],
+          ["aes-worker", "src/features/tools/aes-tools/worker.ts"],
+          ["bcrypt-worker", "src/features/tools/bcrypt/worker.ts"],
+          ["argon2-worker", "src/features/tools/argon2/worker.ts"],
+          [
+            "code-formatters-worker",
+            "src/features/tools/code-formatters/worker.ts",
+          ],
+          [
+            "json-schema-worker",
+            "src/features/tools/json-schema-tools/worker.ts",
+          ],
+          [
+            "image-metadata-worker",
+            "src/features/tools/image-metadata/worker.ts",
+          ],
+          [
+            "markdown-tools-worker",
+            "src/features/tools/markdown-tools/worker.ts",
+          ],
+        ]),
+        // Nitro traces these runtime packages into .output. Leaving them
+        // external also preserves native bindings and package-relative WASM.
+        external: [
+          ...builtinModules,
+          /^node:/,
+          /^(?:figlet|zod)(?:\/|$)/,
+          /^@jsquash\/(?:avif|oxipng)(?:\/|$)/,
+          /^@napi-rs\/canvas(?:\/|$)/,
+          /^zxing-wasm(?:\/|$)/,
+          /^@libwebp-wasm\/img2webp(?:\/|$)/,
+          /^pdfjs-dist(?:\/|$)/,
+          /^@neslinesli93\/qpdf-wasm(?:\/|$)/,
+        ],
+        output: {
+          dir: outdir,
+          entryFileNames: "[name].js",
+          format: "esm",
+        },
+      });
+    },
+  };
+}
 
 // Nitro copies public files after the client PWA hook. Read the versioned
 // PDF resources from source so their cache allowlist cannot miss that phase.
@@ -137,11 +308,8 @@ function workerManifestEntries(): {
       const revision = createHash("sha256").update(bytes).digest("hex");
       if (
         bytes.length > 3 * 1024 * 1024 &&
-        ![
-          "4237008d456ccc1313629f53191f81389d9318be9ec5ccf0034d03a75b14763c",
-          // Cloudflare's builtin aliases produce a distinct browser AST bundle.
-          "6e0f7c214440e41058b891ab6454fc049e7ae2853e6d8f65c118841ccec98da7",
-        ].includes(revision)
+        revision !==
+          "4237008d456ccc1313629f53191f81389d9318be9ec5ccf0034d03a75b14763c"
       )
         throw new Error(
           "Review the oversized Worker revision before caching it",
@@ -241,16 +409,9 @@ export default defineConfig({
       trailingSlash: localeTrailingSlash,
     }),
     nitro({
-      cloudflare: { deployConfig: false },
-      // Preserve the explicit npm package import through Nitro's builtin aliases.
-      alias: {
-        "punycode/": fileURLToPath(
-          new URL("./node_modules/punycode/punycode.es6.js", import.meta.url),
-        ),
-      },
       // Production starts with Bun; its native adapter preserves client aborts.
       // Retain Nitro deployment overrides for explicitly selected runtimes.
-      preset: deploymentPreset,
+      preset: process.env.NITRO_PRESET || process.env.SERVER_PRESET || "bun",
       ...(coverageEnabled
         ? {
             output: {
@@ -260,14 +421,25 @@ export default defineConfig({
             },
           }
         : {}),
+      // These packages are resolved dynamically by production server Workers.
+      // Full tracing keeps the standalone .output deployment executable.
+      traceDeps: [
+        "figlet*",
+        "zod*",
+        "@jsquash/avif*",
+        "@jsquash/oxipng*",
+        "@napi-rs/canvas*",
+        "zxing-wasm*",
+        "@libwebp-wasm/img2webp*",
+        "pdfjs-dist*",
+        "@neslinesli93/qpdf-wasm*",
+      ],
     }),
     tailwindcss(),
     tanstackStart({
       pages: prerenderPages,
       prerender: {
-        // Workers render pages on request. Avoid launching Wrangler recursively
-        // while its custom build command is already running this Vite build.
-        enabled: !cloudflareBuild,
+        enabled: true,
         failOnError: true,
         crawlLinks: true,
         concurrency: 8,
@@ -343,5 +515,6 @@ export default defineConfig({
               environment.name === "client",
           })),
         ],
+    serverWorkerEntries(),
   ],
 });

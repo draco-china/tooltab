@@ -20,6 +20,8 @@ export function sitemapXml(origin: string) {
   const paths = [
     "",
     "/tools",
+    "/api",
+    "/mcp",
     "/privacy",
     "/terms",
     ...tools.map((tool) => `/tools/${tool.id}`),

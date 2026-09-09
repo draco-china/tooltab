@@ -13,8 +13,12 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as Char123LocaleChar125RouteRouteImport } from './routes/{-$locale}/route'
 import { Route as Char123LocaleChar125IndexRouteImport } from './routes/{-$locale}/index'
+import { Route as Char123LocaleChar125ApiRouteImport } from './routes/{-$locale}/api'
+import { Route as Char123LocaleChar125McpRouteImport } from './routes/{-$locale}/mcp'
 import { Route as Char123LocaleChar125PrivacyRouteImport } from './routes/{-$locale}/privacy'
 import { Route as Char123LocaleChar125TermsRouteImport } from './routes/{-$locale}/terms'
+import { Route as ApiV1SplatRouteImport } from './routes/api_.v1.$'
+import { Route as ApiV1PopularToolsRouteImport } from './routes/api_.v1.popular-tools'
 import { Route as Char123LocaleChar125ToolsIndexRouteImport } from './routes/{-$locale}/tools/index'
 import { Route as Char123LocaleChar125ToolsAdler32HashTextOrFileRouteImport } from './routes/{-$locale}/tools/adler32-hash-text-or-file'
 import { Route as Char123LocaleChar125ToolsAesDecryptorRouteImport } from './routes/{-$locale}/tools/aes-decryptor'
@@ -254,6 +258,16 @@ const Char123LocaleChar125IndexRoute =
     path: '/',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
+const Char123LocaleChar125ApiRoute = Char123LocaleChar125ApiRouteImport.update({
+  id: '/api',
+  path: '/api',
+  getParentRoute: () => Char123LocaleChar125RouteRoute,
+} as any)
+const Char123LocaleChar125McpRoute = Char123LocaleChar125McpRouteImport.update({
+  id: '/mcp',
+  path: '/mcp',
+  getParentRoute: () => Char123LocaleChar125RouteRoute,
+} as any)
 const Char123LocaleChar125PrivacyRoute =
   Char123LocaleChar125PrivacyRouteImport.update({
     id: '/privacy',
@@ -266,6 +280,16 @@ const Char123LocaleChar125TermsRoute =
     path: '/terms',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
+const ApiV1SplatRoute = ApiV1SplatRouteImport.update({
+  id: '/api_/v1/$',
+  path: '/api/v1/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiV1PopularToolsRoute = ApiV1PopularToolsRouteImport.update({
+  id: '/api_/v1/popular-tools',
+  path: '/api/v1/popular-tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const Char123LocaleChar125ToolsIndexRoute =
   Char123LocaleChar125ToolsIndexRouteImport.update({
     id: '/tools/',
@@ -1571,9 +1595,13 @@ export interface FileRoutesByFullPath {
   '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/{-$locale}/api': typeof Char123LocaleChar125ApiRoute
+  '/{-$locale}/mcp': typeof Char123LocaleChar125McpRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
   '/{-$locale}/terms': typeof Char123LocaleChar125TermsRoute
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/api/v1/$': typeof ApiV1SplatRoute
+  '/api/v1/popular-tools': typeof ApiV1PopularToolsRoute
   '/{-$locale}/tools/adler32-hash-text-or-file': typeof Char123LocaleChar125ToolsAdler32HashTextOrFileRoute
   '/{-$locale}/tools/aes-decryptor': typeof Char123LocaleChar125ToolsAesDecryptorRoute
   '/{-$locale}/tools/aes-encryptor': typeof Char123LocaleChar125ToolsAesEncryptorRoute
@@ -1794,9 +1822,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/{-$locale}/api': typeof Char123LocaleChar125ApiRoute
+  '/{-$locale}/mcp': typeof Char123LocaleChar125McpRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
   '/{-$locale}/terms': typeof Char123LocaleChar125TermsRoute
   '/{-$locale}': typeof Char123LocaleChar125IndexRoute
+  '/api/v1/$': typeof ApiV1SplatRoute
+  '/api/v1/popular-tools': typeof ApiV1PopularToolsRoute
   '/{-$locale}/tools/adler32-hash-text-or-file': typeof Char123LocaleChar125ToolsAdler32HashTextOrFileRoute
   '/{-$locale}/tools/aes-decryptor': typeof Char123LocaleChar125ToolsAesDecryptorRoute
   '/{-$locale}/tools/aes-encryptor': typeof Char123LocaleChar125ToolsAesEncryptorRoute
@@ -2019,9 +2051,13 @@ export interface FileRoutesById {
   '/{-$locale}': typeof Char123LocaleChar125RouteRouteWithChildren
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/{-$locale}/api': typeof Char123LocaleChar125ApiRoute
+  '/{-$locale}/mcp': typeof Char123LocaleChar125McpRoute
   '/{-$locale}/privacy': typeof Char123LocaleChar125PrivacyRoute
   '/{-$locale}/terms': typeof Char123LocaleChar125TermsRoute
   '/{-$locale}/': typeof Char123LocaleChar125IndexRoute
+  '/api_/v1/$': typeof ApiV1SplatRoute
+  '/api_/v1/popular-tools': typeof ApiV1PopularToolsRoute
   '/{-$locale}/tools/adler32-hash-text-or-file': typeof Char123LocaleChar125ToolsAdler32HashTextOrFileRoute
   '/{-$locale}/tools/aes-decryptor': typeof Char123LocaleChar125ToolsAesDecryptorRoute
   '/{-$locale}/tools/aes-encryptor': typeof Char123LocaleChar125ToolsAesEncryptorRoute
@@ -2245,9 +2281,13 @@ export interface FileRouteTypes {
     | '/{-$locale}'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/{-$locale}/api'
+    | '/{-$locale}/mcp'
     | '/{-$locale}/privacy'
     | '/{-$locale}/terms'
     | '/{-$locale}/'
+    | '/api/v1/$'
+    | '/api/v1/popular-tools'
     | '/{-$locale}/tools/adler32-hash-text-or-file'
     | '/{-$locale}/tools/aes-decryptor'
     | '/{-$locale}/tools/aes-encryptor'
@@ -2468,9 +2508,13 @@ export interface FileRouteTypes {
   to:
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/{-$locale}/api'
+    | '/{-$locale}/mcp'
     | '/{-$locale}/privacy'
     | '/{-$locale}/terms'
     | '/{-$locale}'
+    | '/api/v1/$'
+    | '/api/v1/popular-tools'
     | '/{-$locale}/tools/adler32-hash-text-or-file'
     | '/{-$locale}/tools/aes-decryptor'
     | '/{-$locale}/tools/aes-encryptor'
@@ -2692,9 +2736,13 @@ export interface FileRouteTypes {
     | '/{-$locale}'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/{-$locale}/api'
+    | '/{-$locale}/mcp'
     | '/{-$locale}/privacy'
     | '/{-$locale}/terms'
     | '/{-$locale}/'
+    | '/api_/v1/$'
+    | '/api_/v1/popular-tools'
     | '/{-$locale}/tools/adler32-hash-text-or-file'
     | '/{-$locale}/tools/aes-decryptor'
     | '/{-$locale}/tools/aes-encryptor'
@@ -2917,6 +2965,8 @@ export interface RootRouteChildren {
   Char123LocaleChar125RouteRoute: typeof Char123LocaleChar125RouteRouteWithChildren
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiV1SplatRoute: typeof ApiV1SplatRoute
+  ApiV1PopularToolsRoute: typeof ApiV1PopularToolsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -2949,6 +2999,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char123LocaleChar125IndexRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
+    '/{-$locale}/api': {
+      id: '/{-$locale}/api'
+      path: '/api'
+      fullPath: '/{-$locale}/api'
+      preLoaderRoute: typeof Char123LocaleChar125ApiRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/mcp': {
+      id: '/{-$locale}/mcp'
+      path: '/mcp'
+      fullPath: '/{-$locale}/mcp'
+      preLoaderRoute: typeof Char123LocaleChar125McpRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
     '/{-$locale}/privacy': {
       id: '/{-$locale}/privacy'
       path: '/privacy'
@@ -2962,6 +3026,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/{-$locale}/terms'
       preLoaderRoute: typeof Char123LocaleChar125TermsRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/api_/v1/$': {
+      id: '/api_/v1/$'
+      path: '/api/v1/$'
+      fullPath: '/api/v1/$'
+      preLoaderRoute: typeof ApiV1SplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api_/v1/popular-tools': {
+      id: '/api_/v1/popular-tools'
+      path: '/api/v1/popular-tools'
+      fullPath: '/api/v1/popular-tools'
+      preLoaderRoute: typeof ApiV1PopularToolsRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/{-$locale}/tools/': {
       id: '/{-$locale}/tools/'
@@ -4479,6 +4557,8 @@ declare module '@tanstack/react-router' {
 }
 
 interface Char123LocaleChar125RouteRouteChildren {
+  Char123LocaleChar125ApiRoute: typeof Char123LocaleChar125ApiRoute
+  Char123LocaleChar125McpRoute: typeof Char123LocaleChar125McpRoute
   Char123LocaleChar125PrivacyRoute: typeof Char123LocaleChar125PrivacyRoute
   Char123LocaleChar125TermsRoute: typeof Char123LocaleChar125TermsRoute
   Char123LocaleChar125IndexRoute: typeof Char123LocaleChar125IndexRoute
@@ -4702,6 +4782,8 @@ interface Char123LocaleChar125RouteRouteChildren {
 
 const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChildren =
   {
+    Char123LocaleChar125ApiRoute: Char123LocaleChar125ApiRoute,
+    Char123LocaleChar125McpRoute: Char123LocaleChar125McpRoute,
     Char123LocaleChar125PrivacyRoute: Char123LocaleChar125PrivacyRoute,
     Char123LocaleChar125TermsRoute: Char123LocaleChar125TermsRoute,
     Char123LocaleChar125IndexRoute: Char123LocaleChar125IndexRoute,
@@ -5145,6 +5227,8 @@ const rootRouteChildren: RootRouteChildren = {
   Char123LocaleChar125RouteRoute: Char123LocaleChar125RouteRouteWithChildren,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiV1SplatRoute: ApiV1SplatRoute,
+  ApiV1PopularToolsRoute: ApiV1PopularToolsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

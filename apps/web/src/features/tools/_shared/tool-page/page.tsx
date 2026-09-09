@@ -6,6 +6,7 @@ import { tools } from "@/features/tools/catalog/registry";
 import { browserCapabilities } from "@/lib/capabilities";
 import { m } from "@/paraglide/messages.js";
 import { getLocale } from "@/paraglide/runtime.js";
+import { ToolAutomation } from "@/features/tools/_shared/tool-page/automation";
 import { ToolPageShell } from "@/features/tools/_shared/tool-page/shell";
 
 export function ToolPage({
@@ -68,14 +69,11 @@ export function ToolPage({
             <Fragment key={toolId}>{children}</Fragment>
           )}
         </section>
-        <section className="grid gap-1" aria-label={m["common.howto"]()}>
-          <h2 className="text-xl font-semibold tracking-tight">
-            {m["common.howto"]()}
-          </h2>
-          <p className="text-sm leading-6 text-muted">
-            {instructions ?? tool.instructionsMessage({})}
-          </p>
-        </section>
+        <ToolAutomation
+          key={toolId}
+          toolId={toolId}
+          instructions={instructions ?? tool.instructionsMessage({})}
+        />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
